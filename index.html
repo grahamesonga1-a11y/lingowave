@@ -1,950 +1,432 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>LingoWave — Understand Any Language</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-
-    font-family:
-        Inter,
-        Arial,
-        sans-serif;
-
-    background:
-        #f5f7fb;
-
-    color:
-        #172033;
-
-    min-height:
-        100vh;
-
-}
-
-
-/* NAVBAR */
-
-nav {
-
-    height:
-        70px;
-
-    background:
-        white;
-
-    border-bottom:
-        1px solid #e7eaf0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    padding:
-        0 7%;
-
-}
-
-.logo {
-
-    font-size:
-        24px;
-
-    font-weight:
-        800;
-
-    color:
-        #3157d5;
-
-}
-
-.logo span {
-
-    color:
-        #172033;
-
-}
-
-.status {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        7px;
-
-    font-size:
-        13px;
-
-    color:
-        #687386;
-
-}
-
-.status-dot {
-
-    width:
-        8px;
-
-    height:
-        8px;
-
-    background:
-        #27ae60;
-
-    border-radius:
-        50%;
-
-}
-
-
-/* HERO */
-
-.hero {
-
-    text-align:
-        center;
-
-    padding:
-        60px 20px 35px;
-
-}
-
-.hero h1 {
-
-    font-size:
-        clamp(32px, 5vw, 52px);
-
-    line-height:
-        1.1;
-
-    margin-bottom:
-        15px;
-
-}
-
-.hero h1 span {
-
-    color:
-        #3157d5;
-
-}
-
-.hero p {
-
-    color:
-        #6c7587;
-
-    font-size:
-        17px;
-
-}
-
-
-/* CONTAINER */
-
-.container {
-
-    width:
-        90%;
-
-    max-width:
-        1050px;
-
-    margin:
-        auto;
-
-}
-
-
-/* MODES */
-
-.modes {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap:
-        12px;
-
-    margin-bottom:
-        20px;
-
-}
-
-.mode {
-
-    background:
-        white;
-
-    border:
-        1px solid #e1e5ed;
-
-    border-radius:
-        12px;
-
-    padding:
-        17px;
-
-    cursor:
-        pointer;
-
-    text-align:
-        center;
-
-    transition:
-        .2s;
-
-}
-
-.mode:hover {
-
-    transform:
-        translateY(-2px);
-
-    border-color:
-        #3157d5;
-
-}
-
-.mode.active {
-
-    background:
-        #3157d5;
-
-    color:
-        white;
-
-    border-color:
-        #3157d5;
-
-}
-
-.mode-icon {
-
-    font-size:
-        25px;
-
-    margin-bottom:
-        7px;
-
-}
-
-.mode-title {
-
-    font-weight:
-        700;
-
-    font-size:
-        14px;
-
-}
-
-
-/* CARD */
-
-.card {
-
-    background:
-        white;
-
-    border:
-        1px solid #e1e5ed;
-
-    border-radius:
-        16px;
-
-    padding:
-        25px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(30,40,70,.05);
-
-}
-
-
-/* LANGUAGES */
-
-.language-row {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr 50px 1fr;
-
-    gap:
-        12px;
-
-    margin-bottom:
-        20px;
-
-}
-
-select {
-
-    width:
-        100%;
-
-    padding:
-        13px;
-
-    border:
-        1px solid #d9dee8;
-
-    border-radius:
-        9px;
-
-    background:
-        white;
-
-    font-size:
-        14px;
-
-}
-
-.swap {
-
-    width:
-        40px;
-
-    height:
-        40px;
-
-    margin:
-        auto;
-
-    border-radius:
-        50%;
-
-    border:
-        1px solid #d9dee8;
-
-    background:
-        white;
-
-    cursor:
-        pointer;
-
-    font-size:
-        18px;
-
-}
-
-
-/* TRANSLATION */
-
-.translation-grid {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:
-        15px;
-
-}
-
-.box {
-
-    border:
-        1px solid #dfe4ec;
-
-    border-radius:
-        12px;
-
-    padding:
-        18px;
-
-}
-
-.box-title {
-
-    color:
-        #7c8698;
-
-    font-size:
-        12px;
-
-    font-weight:
-        800;
-
-    margin-bottom:
-        10px;
-
-}
-
-textarea {
-
-    width:
-        100%;
-
-    height:
-        190px;
-
-    border:
-        none;
-
-    outline:
-        none;
-
-    resize:
-        vertical;
-
-    font-size:
-        16px;
-
-    line-height:
-        1.6;
-
-}
-
-#translationOutput {
-
-    color:
-        #3157d5;
-
-}
-
-
-/* BUTTON */
-
-.primary {
-
-    width:
-        100%;
-
-    padding:
-        15px;
-
-    margin-top:
-        15px;
-
-    border:
-        none;
-
-    border-radius:
-        9px;
-
-    background:
-        #3157d5;
-
-    color:
-        white;
-
-    font-size:
-        15px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-
-}
-
-.primary:hover {
-
-    background:
-        #2647b7;
-
-}
-
-.primary:disabled {
-
-    opacity:
-        .6;
-
-    cursor:
-        not-allowed;
-
-}
-
-
-/* UPLOAD */
-
-.upload {
-
-    border:
-        2px dashed #d7dce6;
-
-    border-radius:
-        12px;
-
-    padding:
-        45px 20px;
-
-    text-align:
-        center;
-
-    cursor:
-        pointer;
-
-    display:
-        block;
-
-}
-
-.upload:hover {
-
-    border-color:
-        #3157d5;
-
-    background:
-        #f8faff;
-
-}
-
-.upload-icon {
-
-    font-size:
-        40px;
-
-    margin-bottom:
-        10px;
-
-}
-
-.upload p {
-
-    color:
-        #7b8494;
-
-    font-size:
-        13px;
-
-    margin-top:
-        7px;
-
-}
-
-input[type=file] {
-
-    display:
-        none;
-
-}
-
-
-/* MICROPHONE */
-
-.mic-area {
-
-    text-align:
-        center;
-
-    padding:
-        35px 20px;
-
-}
-
-.mic {
-
-    width:
-        90px;
-
-    height:
-        90px;
-
-    border-radius:
-        50%;
-
-    border:
-        none;
-
-    background:
-        #3157d5;
-
-    color:
-        white;
-
-    font-size:
-        35px;
-
-    cursor:
-        pointer;
-
-}
-
-.mic.listening {
-
-    animation:
-        pulse 1s infinite;
-
-}
-
-@keyframes pulse {
-
-    50% {
-
-        transform:
-            scale(1.08);
-
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
-}
-
-.mic-status {
-
-    margin-top:
-        15px;
-
-    color:
-        #737d90;
-
-}
-
-
-/* FILE NAME */
-
-.file-name {
-
-    text-align:
-        center;
-
-    color:
-        #3157d5;
-
-    font-size:
-        14px;
-
-    margin:
-        12px 0;
-
-}
-
-
-/* URL */
-
-.url {
-
-    width:
-        100%;
-
-    padding:
-        13px;
-
-    margin-top:
-        15px;
-
-    border:
-        1px solid #d9dee8;
-
-    border-radius:
-        9px;
-
-    outline:
-        none;
-
-}
-
-
-/* LOADER */
-
-.loader {
-
-    display:
-        none;
-
-    text-align:
-        center;
-
-    padding:
-        15px;
-
-    color:
-        #3157d5;
-
-    font-size:
-        14px;
-
-}
-
-.loader.show {
-
-    display:
-        block;
-
-}
-
-
-/* HIDDEN */
-
-.hidden {
-
-    display:
-        none !important;
-
-}
-
-
-/* FOOTER */
-
-footer {
-
-    text-align:
-        center;
-
-    color:
-        #8a93a3;
-
-    font-size:
-        13px;
-
-    padding:
-        40px 20px;
-
-}
-
-
-/* MOBILE */
-
-@media(max-width:700px) {
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f6f8fc;
+        color: #182033;
+        min-height: 100vh;
+    }
 
     nav {
-
-        padding:
-            0 5%;
-
+        height: 68px;
+        background: white;
+        border-bottom: 1px solid #e5e9f2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6%;
     }
 
-    .modes {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: #3157d5;
     }
 
-    .translation-grid {
-
-        grid-template-columns:
-            1fr;
-
+    .logo span {
+        color: #172033;
     }
 
-    .language-row {
-
-        grid-template-columns:
-            1fr;
-
+    .status {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        color: #667085;
     }
 
-    .swap {
+    .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #22a06b;
+    }
 
-        transform:
-            rotate(90deg);
+    .hero {
+        padding: 55px 20px 35px;
+        text-align: center;
+    }
 
+    .hero h1 {
+        font-size: clamp(34px, 6vw, 54px);
+        margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+        color: #3157d5;
+    }
+
+    .hero p {
+        color: #687386;
+        font-size: 17px;
+    }
+
+    .container {
+        width: 92%;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .tabs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .tab {
+        border: 1px solid #dfe4ed;
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        cursor: pointer;
+        text-align: center;
+        transition: .2s;
+    }
+
+    .tab:hover {
+        transform: translateY(-2px);
+        border-color: #3157d5;
+    }
+
+    .tab.active {
+        background: #3157d5;
+        color: white;
+        border-color: #3157d5;
+    }
+
+    .tab-icon {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .tab-name {
+        font-size: 14px;
+        font-weight: 700;
     }
 
     .card {
-
-        padding:
-            17px;
-
+        background: white;
+        padding: 25px;
+        border: 1px solid #e2e6ee;
+        border-radius: 16px;
+        box-shadow: 0 12px 35px rgba(30, 45, 80, .06);
     }
 
-}
+    .language-row {
+        display: grid;
+        grid-template-columns: 1fr 55px 1fr;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
+    select {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #d9dee8;
+        border-radius: 9px;
+        background: white;
+    }
+
+    .swap {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid #dde2eb;
+        background: white;
+        cursor: pointer;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .box {
+        border: 1px solid #dfe4ed;
+        border-radius: 12px;
+        padding: 16px;
+        min-height: 230px;
+    }
+
+    .label {
+        font-size: 12px;
+        color: #7c8597;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 180px;
+        border: none;
+        outline: none;
+        resize: vertical;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .result {
+        color: #3157d5;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 9px;
+        margin-top: 15px;
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+        background: #3157d5;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: #284ab6;
+    }
+
+    .btn:disabled {
+        opacity: .5;
+        cursor: wait;
+    }
+
+    .upload {
+        border: 2px dashed #d5dbe6;
+        border-radius: 13px;
+        text-align: center;
+        padding: 40px 20px;
+        cursor: pointer;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .upload:hover {
+        border-color: #3157d5;
+        background: #f8faff;
+    }
+
+    .upload-icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .filename {
+        text-align: center;
+        color: #3157d5;
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    audio {
+        width: 100%;
+        margin: 10px 0 15px;
+    }
+
+    .mic-area {
+        padding: 35px 10px;
+        text-align: center;
+    }
+
+    .mic {
+        width: 95px;
+        height: 95px;
+        border: none;
+        border-radius: 50%;
+        background: #3157d5;
+        color: white;
+        font-size: 38px;
+        cursor: pointer;
+    }
+
+    .mic.listening {
+        animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .status-message {
+        margin-top: 15px;
+        color: #687386;
+        text-align: center;
+    }
+
+    .progress {
+        display: none;
+        margin: 15px 0;
+        padding: 13px;
+        border-radius: 8px;
+        background: #f0f4ff;
+        color: #3157d5;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .progress.show {
+        display: block;
+    }
+
+    .note {
+        background: #fffbea;
+        border: 1px solid #f2df9e;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #655615;
+        margin-top: 15px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    footer {
+        text-align: center;
+        padding: 35px 15px;
+        color: #8a93a4;
+        font-size: 13px;
+    }
+
+    @media(max-width:700px) {
+        .tabs {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .language-row {
+            grid-template-columns: 1fr;
+        }
+
+        .swap {
+            margin: auto;
+            transform: rotate(90deg);
+        }
+
+        .card {
+            padding: 16px;
+        }
+    }
 </style>
-
 </head>
-
 
 <body>
 
-
 <nav>
-
     <div class="logo">
         Lingo<span>Wave</span>
     </div>
 
     <div class="status">
-
-        <div class="status-dot"></div>
-
-        AI Engine
-
+        <div class="dot"></div>
+        Browser AI
     </div>
-
 </nav>
 
 
 <section class="hero">
-
     <h1>
-        Understand
-        <span>Any Language.</span>
+        Understand <span>Any Language.</span>
     </h1>
 
     <p>
         Translate text, speech, audio and music into English.
     </p>
-
 </section>
 
 
-<div class="container">
+<main class="container">
 
+    <div class="tabs">
 
-    <!-- MODES -->
-
-    <div class="modes">
-
-        <div
-            class="mode active"
-            onclick="switchMode('text',this)"
-        >
-
-            <div class="mode-icon">
-                ⌨️
-            </div>
-
-            <div class="mode-title">
-                Text
-            </div>
-
+        <div class="tab active"
+             onclick="openMode('text', this)">
+            <div class="tab-icon">⌨️</div>
+            <div class="tab-name">Text</div>
         </div>
 
-
-        <div
-            class="mode"
-            onclick="switchMode('voice',this)"
-        >
-
-            <div class="mode-icon">
-                🎙️
-            </div>
-
-            <div class="mode-title">
-                Voice
-            </div>
-
+        <div class="tab"
+             onclick="openMode('voice', this)">
+            <div class="tab-icon">🎙️</div>
+            <div class="tab-name">Voice</div>
         </div>
 
-
-        <div
-            class="mode"
-            onclick="switchMode('audio',this)"
-        >
-
-            <div class="mode-icon">
-                📁
-            </div>
-
-            <div class="mode-title">
-                Audio
-            </div>
-
+        <div class="tab"
+             onclick="openMode('audio', this)">
+            <div class="tab-icon">📁</div>
+            <div class="tab-name">Audio</div>
         </div>
 
-
-        <div
-            class="mode"
-            onclick="switchMode('music',this)"
-        >
-
-            <div class="mode-icon">
-                🎵
-            </div>
-
-            <div class="mode-title">
-                Music
-            </div>
-
+        <div class="tab"
+             onclick="openMode('music', this)">
+            <div class="tab-icon">🎵</div>
+            <div class="tab-name">Music</div>
         </div>
 
     </div>
 
 
-    <div class="card">
-
-
-        <!-- LANGUAGES -->
+    <section class="card">
 
         <div class="language-row">
 
             <select id="sourceLanguage">
-
-                <option>
-                    Auto Detect
-                </option>
-
-                <option>English</option>
-                <option>Swahili</option>
-                <option>French</option>
-                <option>Spanish</option>
-                <option>Arabic</option>
-                <option>Portuguese</option>
-                <option>German</option>
-                <option>Italian</option>
-                <option>Chinese</option>
-                <option>Japanese</option>
-                <option>Korean</option>
-                <option>Hindi</option>
-                <option>Amharic</option>
-                <option>Somali</option>
-                <option>Yoruba</option>
-                <option>Hausa</option>
-                <option>Zulu</option>
-                <option>Kikuyu</option>
-                <option>Luo</option>
-                <option>Kamba</option>
-                <option>Luhya</option>
-
+                <option value="auto">🌍 Auto Detect</option>
+                <option value="en">English</option>
+                <option value="sw">Swahili</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="ar">Arabic</option>
+                <option value="pt">Portuguese</option>
+                <option value="de">German</option>
+                <option value="it">Italian</option>
+                <option value="zh">Chinese</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="hi">Hindi</option>
+                <option value="so">Somali</option>
+                <option value="am">Amharic</option>
+                <option value="zu">Zulu</option>
             </select>
 
 
-            <button
-                class="swap"
-                onclick="swapLanguages()"
-            >
+            <button class="swap" onclick="swapLanguages()">
                 ⇄
             </button>
 
 
             <select id="targetLanguage">
-
-                <option selected>
-                    English
-                </option>
-
-                <option>Swahili</option>
-                <option>French</option>
-                <option>Spanish</option>
-                <option>Arabic</option>
-
+                <option value="en" selected>🇬🇧 English</option>
+                <option value="sw">Swahili</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="ar">Arabic</option>
             </select>
 
         </div>
@@ -952,120 +434,95 @@ footer {
 
         <!-- TEXT -->
 
-        <div id="textMode">
+        <section id="textMode">
 
-            <div class="translation-grid">
+            <div class="grid">
 
                 <div class="box">
-
-                    <div class="box-title">
+                    <div class="label">
                         ORIGINAL
                     </div>
 
-                    <textarea
-                        id="inputText"
-                        placeholder="Type or paste text here..."
-                    ></textarea>
-
+                    <textarea id="inputText"
+                        placeholder="Type or paste text here..."></textarea>
                 </div>
 
-
                 <div class="box">
-
-                    <div class="box-title">
+                    <div class="label">
                         TRANSLATION
                     </div>
 
                     <textarea
-                        id="translationOutput"
-                        placeholder="Your translation will appear here..."
-                        readonly
-                    ></textarea>
-
+                        id="textResult"
+                        class="result"
+                        placeholder="English translation appears here..."
+                        readonly></textarea>
                 </div>
 
             </div>
 
-
             <button
-                class="primary"
-                onclick="translateText()"
-                id="textButton"
-            >
+                class="btn"
+                id="translateTextButton"
+                onclick="translateText()">
                 Translate
             </button>
 
-        </div>
+        </section>
 
 
         <!-- VOICE -->
 
-        <div
-            id="voiceMode"
-            class="hidden"
-        >
+        <section id="voiceMode" class="hidden">
 
             <div class="mic-area">
 
                 <button
                     class="mic"
                     id="micButton"
-                    onclick="startVoice()"
-                >
+                    onclick="startVoice()">
                     🎙️
                 </button>
 
                 <div
-                    class="mic-status"
-                    id="micStatus"
-                >
-                    Tap the microphone and speak
+                    class="status-message"
+                    id="micStatus">
+                    Tap the microphone and begin speaking
                 </div>
 
             </div>
 
-
-            <div class="translation-grid">
+            <div class="grid">
 
                 <div class="box">
-
-                    <div class="box-title">
-                        SPEECH
+                    <div class="label">
+                        WHAT WE HEARD
                     </div>
 
                     <textarea
-                        id="voiceText"
-                        placeholder="Your speech will appear here..."
-                    ></textarea>
-
+                        id="voiceOriginal"
+                        readonly></textarea>
                 </div>
 
-
                 <div class="box">
-
-                    <div class="box-title">
+                    <div class="label">
                         ENGLISH
                     </div>
 
                     <textarea
-                        id="voiceResult"
-                        placeholder="Translation..."
-                        readonly
-                    ></textarea>
-
+                        id="voiceTranslation"
+                        class="result"
+                        readonly></textarea>
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
 
         <!-- AUDIO -->
 
-        <div
-            id="audioMode"
-            class="hidden"
-        >
+        <section id="audioMode" class="hidden">
 
             <label class="upload">
 
@@ -1074,68 +531,75 @@ footer {
                 </div>
 
                 <strong>
-                    Upload Audio
+                    Upload audio
                 </strong>
 
                 <p>
-                    MP3, WAV, M4A and other supported formats
+                    MP3, WAV, M4A or other browser-supported audio
                 </p>
 
                 <input
-                    type="file"
                     id="audioFile"
+                    type="file"
                     accept="audio/*"
-                    onchange="showAudioName()"
-                >
-
+                    onchange="audioSelected(this)">
             </label>
 
-
             <div
-                class="file-name"
-                id="audioName"
-            ></div>
-
-
-            <div
-                class="loader"
-                id="audioLoader"
-            >
-                🎧 Transcribing and translating...
+                class="filename"
+                id="audioFilename">
             </div>
 
+            <audio
+                id="audioPreview"
+                controls
+                class="hidden">
+            </audio>
 
-            <div class="box">
+            <div
+                class="progress"
+                id="audioProgress">
+                Preparing AI...
+            </div>
 
-                <div class="box-title">
-                    ENGLISH TRANSLATION
+            <div class="grid">
+
+                <div class="box">
+                    <div class="label">
+                        TRANSCRIPTION
+                    </div>
+
+                    <textarea
+                        id="audioOriginal"
+                        readonly></textarea>
                 </div>
 
-                <textarea
-                    id="audioResult"
-                    placeholder="Your translated audio will appear here..."
-                    readonly
-                ></textarea>
+                <div class="box">
+                    <div class="label">
+                        ENGLISH TRANSLATION
+                    </div>
+
+                    <textarea
+                        id="audioTranslation"
+                        class="result"
+                        readonly></textarea>
+                </div>
 
             </div>
 
-
             <button
-                class="primary"
-                onclick="translateAudio()"
-            >
+                id="audioButton"
+                class="btn"
+                onclick="processUploadedAudio('audio')">
                 Translate Audio
             </button>
 
-        </div>
+        </section>
 
 
         <!-- MUSIC -->
 
-        <div
-            id="musicMode"
-            class="hidden"
-        >
+        <section id="musicMode" class="hidden">
 
             <label class="upload">
 
@@ -1144,101 +608,96 @@ footer {
                 </div>
 
                 <strong>
-                    Upload Your Song
+                    Upload a song
                 </strong>
 
                 <p>
-                    Upload an audio file containing the song
+                    LingoWave will attempt to recognise and translate the vocals
                 </p>
 
                 <input
-                    type="file"
                     id="musicFile"
+                    type="file"
                     accept="audio/*"
-                    onchange="showMusicName()"
-                >
-
+                    onchange="musicSelected(this)">
             </label>
 
-
             <div
-                class="file-name"
-                id="musicName"
-            ></div>
-
-
-            <input
-                class="url"
-                id="musicUrl"
-                placeholder="Supported music URL (optional)"
-            >
-
-
-            <div
-                class="loader"
-                id="musicLoader"
-            >
-                🎵 Processing your song...
+                class="filename"
+                id="musicFilename">
             </div>
 
+            <audio
+                id="musicPreview"
+                controls
+                class="hidden">
+            </audio>
 
-            <div class="box" style="margin-top:15px">
+            <div
+                class="progress"
+                id="musicProgress">
+                Preparing music AI...
+            </div>
 
-                <div class="box-title">
-                    TRANSLATED LYRICS
+            <div class="grid">
+
+                <div class="box">
+                    <div class="label">
+                        DETECTED WORDS
+                    </div>
+
+                    <textarea
+                        id="musicOriginal"
+                        readonly></textarea>
                 </div>
 
-                <textarea
-                    id="musicResult"
-                    placeholder="Your translated lyrics will appear here..."
-                    readonly
-                ></textarea>
+                <div class="box">
+                    <div class="label">
+                        ENGLISH VERSION
+                    </div>
+
+                    <textarea
+                        id="musicTranslation"
+                        class="result"
+                        readonly></textarea>
+                </div>
 
             </div>
 
-
             <button
-                class="primary"
-                onclick="translateMusic()"
-            >
+                id="musicButton"
+                class="btn"
+                onclick="processUploadedAudio('music')">
                 Translate Song
             </button>
 
-        </div>
+            <div class="note">
+                Songs with clear vocals work best. Heavy instrumentals,
+                overlapping singers or noisy recordings can reduce accuracy.
+            </div>
 
+        </section>
 
-    </div>
+    </section>
 
-</div>
+</main>
 
 
 <footer>
-
-    © 2026 LingoWave
-    · AI Language Translation
-
+    © 2026 LingoWave · Language without barriers
 </footer>
 
 
 <script>
 
+function openMode(mode, tab) {
 
-/* =========================
-   MODE SWITCHING
-========================= */
-
-function switchMode(mode, element) {
-
-    document
-        .querySelectorAll(".mode")
-        .forEach(
-            item =>
-                item.classList.remove("active")
+    document.querySelectorAll(".tab")
+        .forEach(item =>
+            item.classList.remove("active")
         );
 
-
-    element.classList.add("active");
-
+    tab.classList.add("active");
 
     [
         "textMode",
@@ -1246,122 +705,117 @@ function switchMode(mode, element) {
         "audioMode",
         "musicMode"
     ].forEach(id => {
-
-        document
-            .getElementById(id)
+        document.getElementById(id)
             .classList.add("hidden");
-
     });
 
-
-    document
-        .getElementById(mode + "Mode")
+    document.getElementById(mode + "Mode")
         .classList.remove("hidden");
-
 }
 
 
-/* =========================
-   TEXT TRANSLATION
-========================= */
+function swapLanguages() {
+
+    const source =
+        document.getElementById("sourceLanguage");
+
+    const target =
+        document.getElementById("targetLanguage");
+
+    if (source.value === "auto") {
+        return;
+    }
+
+    const temp = source.value;
+
+    source.value = target.value;
+    target.value = temp;
+}
+
+
+/*
+TEXT TRANSLATION
+
+This uses MyMemory's public translation endpoint
+so no private API key is placed in the HTML.
+*/
 
 async function translateText() {
 
     const text =
-        document
-            .getElementById("inputText")
-            .value
-            .trim();
-
+        document.getElementById("inputText")
+            .value.trim();
 
     const output =
-        document
-            .getElementById("translationOutput");
-
+        document.getElementById("textResult");
 
     const button =
-        document
-            .getElementById("textButton");
-
+        document.getElementById(
+            "translateTextButton"
+        );
 
     if (!text) {
 
         output.value =
-            "Please enter some text.";
+            "Enter some text first.";
 
         return;
-
     }
 
+    let source =
+        document.getElementById(
+            "sourceLanguage"
+        ).value;
 
-    output.value =
-        "Translating...";
+    const target =
+        document.getElementById(
+            "targetLanguage"
+        ).value;
 
-    button.disabled =
-        true;
+    /*
+    MyMemory requires a language pair.
 
+    If Auto Detect is selected,
+    we attempt a basic browser language guess.
+    */
+
+    if (source === "auto") {
+        source = detectBasicLanguage(text);
+    }
+
+    output.value = "Translating...";
+    button.disabled = true;
 
     try {
 
-        const response =
-            await fetch(
-                "/api/translate",
-                {
-
-                    method:
-                        "POST",
-
-                    headers:
-                        {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                    body:
-                        JSON.stringify({
-
-                            text:
-
-                                text,
-
-                            sourceLanguage:
-
-                                document
-                                    .getElementById(
-                                        "sourceLanguage"
-                                    )
-                                    .value,
-
-                            targetLanguage:
-
-                                document
-                                    .getElementById(
-                                        "targetLanguage"
-                                    )
-                                    .value
-
-                        })
-
-                }
+        const url =
+            "https://api.mymemory.translated.net/get?q=" +
+            encodeURIComponent(text) +
+            "&langpair=" +
+            encodeURIComponent(
+                source + "|" + target
             );
 
+        const response =
+            await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(
+                "Translation service unavailable."
+            );
+        }
 
         const data =
             await response.json();
 
-
-        if (!data.success) {
-
+        if (!data.responseData) {
             throw new Error(
-                data.error
+                "No translation was returned."
             );
-
         }
 
-
         output.value =
-            data.translation;
-
+            data.responseData.translatedText;
 
     } catch (error) {
 
@@ -1371,478 +825,599 @@ async function translateText() {
 
     } finally {
 
-        button.disabled =
-            false;
-
+        button.disabled = false;
     }
-
 }
 
 
-/* =========================
-   AUDIO
-========================= */
+/*
+Very small fallback language guess.
+Audio translation uses Whisper's own
+multilingual abilities instead.
+*/
 
-function showAudioName() {
+function detectBasicLanguage(text) {
 
-    const file =
-        document
-            .getElementById("audioFile")
-            .files[0];
+    if (/[\u0600-\u06FF]/.test(text))
+        return "ar";
 
+    if (/[\u3040-\u30ff]/.test(text))
+        return "ja";
 
-    if (file) {
+    if (/[\u4e00-\u9fff]/.test(text))
+        return "zh";
 
-        document
-            .getElementById("audioName")
-            .textContent =
-                "Selected: " + file.name;
+    if (/[\uac00-\ud7af]/.test(text))
+        return "ko";
 
-    }
-
+    return "en";
 }
 
 
-async function translateAudio() {
-
-    const file =
-        document
-            .getElementById("audioFile")
-            .files[0];
-
-
-    const output =
-        document
-            .getElementById("audioResult");
-
-
-    const loader =
-        document
-            .getElementById("audioLoader");
-
-
-    if (!file) {
-
-        alert(
-            "Please select an audio file."
-        );
-
-        return;
-
-    }
-
-
-    loader.classList.add("show");
-
-    output.value =
-        "Processing your audio...";
-
-
-    const formData =
-        new FormData();
-
-
-    formData.append(
-        "audio",
-        file
-    );
-
-
-    formData.append(
-        "sourceLanguage",
-        document
-            .getElementById(
-                "sourceLanguage"
-            )
-            .value
-    );
-
-
-    try {
-
-        const response =
-            await fetch(
-                "/api/translate-audio",
-                {
-
-                    method:
-                        "POST",
-
-                    body:
-                        formData
-
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (!data.success) {
-
-            throw new Error(
-                data.error
-            );
-
-        }
-
-
-        output.value =
-            data.translation;
-
-
-    } catch (error) {
-
-        output.value =
-            "Audio translation failed.\n\n" +
-            error.message;
-
-    } finally {
-
-        loader.classList.remove(
-            "show"
-        );
-
-    }
-
-}
-
-
-/* =========================
-   MUSIC
-========================= */
-
-function showMusicName() {
-
-    const file =
-        document
-            .getElementById("musicFile")
-            .files[0];
-
-
-    if (file) {
-
-        document
-            .getElementById("musicName")
-            .textContent =
-                "Selected: " + file.name;
-
-    }
-
-}
-
-
-async function translateMusic() {
-
-    const file =
-        document
-            .getElementById("musicFile")
-            .files[0];
-
-
-    const output =
-        document
-            .getElementById("musicResult");
-
-
-    const loader =
-        document
-            .getElementById("musicLoader");
-
-
-    if (!file) {
-
-        alert(
-            "Please upload a song."
-        );
-
-        return;
-
-    }
-
-
-    loader.classList.add(
-        "show"
-    );
-
-
-    output.value =
-        "🎵 Processing song...\n\n" +
-        "Transcribing and translating...";
-
-
-    const formData =
-        new FormData();
-
-
-    formData.append(
-        "audio",
-        file
-    );
-
-
-    formData.append(
-        "sourceLanguage",
-        document
-            .getElementById(
-                "sourceLanguage"
-            )
-            .value
-    );
-
-
-    try {
-
-        const response =
-            await fetch(
-                "/api/translate-audio",
-                {
-
-                    method:
-                        "POST",
-
-                    body:
-                        formData
-
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (!data.success) {
-
-            throw new Error(
-                data.error
-            );
-
-        }
-
-
-        output.value =
-            data.translation;
-
-
-    } catch (error) {
-
-        output.value =
-            "Music translation failed.\n\n" +
-            error.message;
-
-    } finally {
-
-        loader.classList.remove(
-            "show"
-        );
-
-    }
-
-}
-
-
-/* =========================
-   VOICE
-========================= */
+/*
+VOICE TRANSLATION
+
+Uses browser SpeechRecognition where available.
+*/
 
 function startVoice() {
 
-    const Recognition =
+    const SpeechRecognition =
         window.SpeechRecognition ||
         window.webkitSpeechRecognition;
 
+    if (!SpeechRecognition) {
 
-    if (!Recognition) {
-
-        alert(
-            "Speech recognition is not supported by this browser."
-        );
+        document.getElementById(
+            "micStatus"
+        ).textContent =
+            "Your browser does not support live speech recognition.";
 
         return;
-
     }
 
-
     const recognition =
-        new Recognition();
+        new SpeechRecognition();
 
+    recognition.continuous = false;
+    recognition.interimResults = true;
 
-    recognition.continuous =
-        false;
+    const selectedLanguage =
+        document.getElementById(
+            "sourceLanguage"
+        ).value;
 
-    recognition.interimResults =
-        false;
+    const languageMap = {
 
-    recognition.lang =
-        "en-US";
+        en: "en-US",
+        sw: "sw-KE",
+        fr: "fr-FR",
+        es: "es-ES",
+        ar: "ar-SA",
+        pt: "pt-PT",
+        de: "de-DE",
+        it: "it-IT",
+        zh: "zh-CN",
+        ja: "ja-JP",
+        ko: "ko-KR",
+        hi: "hi-IN",
+        so: "so-SO"
 
+    };
+
+    if (
+        selectedLanguage !== "auto" &&
+        languageMap[selectedLanguage]
+    ) {
+
+        recognition.lang =
+            languageMap[selectedLanguage];
+    }
 
     const button =
-        document
-            .getElementById(
-                "micButton"
-            );
-
+        document.getElementById(
+            "micButton"
+        );
 
     const status =
-        document
-            .getElementById(
-                "micStatus"
-            );
+        document.getElementById(
+            "micStatus"
+        );
 
-
-    button.classList.add(
-        "listening"
-    );
-
+    button.classList.add("listening");
 
     status.textContent =
         "Listening...";
-
 
     recognition.start();
 
 
     recognition.onresult =
-        async function(event) {
+        async event => {
 
-            const text =
-                event
-                    .results[0][0]
+            let transcript = "";
+
+            for (
+                let i = event.resultIndex;
+                i < event.results.length;
+                i++
+            ) {
+
+                transcript +=
+                    event.results[i][0]
                     .transcript;
-
-
-            document
-                .getElementById(
-                    "voiceText"
-                )
-                .value =
-                    text;
-
-
-            status.textContent =
-                "Speech captured. Translating...";
-
-
-            try {
-
-                const response =
-                    await fetch(
-                        "/api/translate",
-                        {
-
-                            method:
-                                "POST",
-
-                            headers:
-                                {
-                                    "Content-Type":
-                                        "application/json"
-                                },
-
-                            body:
-                                JSON.stringify({
-
-                                    text:
-                                        text,
-
-                                    sourceLanguage:
-                                        "Auto Detect",
-
-                                    targetLanguage:
-                                        "English"
-
-                                })
-
-                        }
-                    );
-
-
-                const data =
-                    await response.json();
-
-
-                document
-                    .getElementById(
-                        "voiceResult"
-                    )
-                    .value =
-                        data.translation ||
-                        data.error;
-
-
-                status.textContent =
-                    "Translation complete.";
-
-            } catch {
-
-                status.textContent =
-                    "Translation failed.";
-
             }
 
+            document.getElementById(
+                "voiceOriginal"
+            ).value =
+                transcript;
+
+            const finalResult =
+                event.results[
+                    event.results.length - 1
+                ].isFinal;
+
+            if (finalResult) {
+
+                status.textContent =
+                    "Translating...";
+
+                await translateVoiceText(
+                    transcript
+                );
+
+                status.textContent =
+                    "Finished.";
+            }
         };
 
 
     recognition.onerror =
-        function() {
+        event => {
 
             status.textContent =
-                "Could not understand the speech.";
-
+                "Microphone error: " +
+                event.error;
         };
 
 
     recognition.onend =
-        function() {
+        () => {
 
             button.classList.remove(
                 "listening"
             );
-
         };
-
 }
 
 
-/* =========================
-   LANGUAGE SWAP
-========================= */
+async function translateVoiceText(text) {
 
-function swapLanguages() {
+    const result =
+        document.getElementById(
+            "voiceTranslation"
+        );
 
-    const source =
-        document
-            .getElementById(
-                "sourceLanguage"
+    let source =
+        document.getElementById(
+            "sourceLanguage"
+        ).value;
+
+    if (source === "auto") {
+        source =
+            detectBasicLanguage(text);
+    }
+
+    try {
+
+        const url =
+            "https://api.mymemory.translated.net/get?q=" +
+            encodeURIComponent(text) +
+            "&langpair=" +
+            encodeURIComponent(
+                source + "|en"
             );
 
+        const response =
+            await fetch(url);
 
-    const target =
-        document
-            .getElementById(
-                "targetLanguage"
-            );
+        const data =
+            await response.json();
+
+        result.value =
+            data.responseData
+            ?.translatedText ||
+            text;
+
+    } catch {
+
+        result.value =
+            "Unable to translate.";
+    }
+}
 
 
-    const temporary =
-        source.value;
+/*
+UPLOAD PREVIEW
+*/
+
+function audioSelected(input) {
+
+    if (!input.files[0])
+        return;
+
+    document.getElementById(
+        "audioFilename"
+    ).textContent =
+        input.files[0].name;
+
+    const player =
+        document.getElementById(
+            "audioPreview"
+        );
+
+    player.src =
+        URL.createObjectURL(
+            input.files[0]
+        );
+
+    player.classList.remove("hidden");
+}
 
 
-    source.value =
-        target.value;
+function musicSelected(input) {
 
+    if (!input.files[0])
+        return;
 
-    target.value =
-        temporary;
+    document.getElementById(
+        "musicFilename"
+    ).textContent =
+        input.files[0].name;
 
+    const player =
+        document.getElementById(
+            "musicPreview"
+        );
+
+    player.src =
+        URL.createObjectURL(
+            input.files[0]
+        );
+
+    player.classList.remove("hidden");
 }
 
 </script>
 
-</body>
 
+<script type="module">
+
+/*
+AI AUDIO ENGINE
+
+Runs Whisper directly in the browser.
+No OpenAI key.
+No Node server.
+No backend.
+
+The model is downloaded when first needed
+and then cached by the browser.
+*/
+
+import {
+    pipeline,
+    env
+} from
+"https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.0.1";
+
+
+env.allowLocalModels = false;
+
+
+let whisper = null;
+
+
+async function loadWhisper(
+    progressElement
+) {
+
+    if (whisper)
+        return whisper;
+
+    progressElement.classList.add(
+        "show"
+    );
+
+    progressElement.textContent =
+        "Downloading the language model. First use may take a while...";
+
+
+    whisper =
+        await pipeline(
+
+            "automatic-speech-recognition",
+
+            "onnx-community/whisper-tiny",
+
+            {
+
+                progress_callback:
+                    progress => {
+
+                        if (
+                            progress.status ===
+                            "progress"
+                        ) {
+
+                            const percent =
+                                Math.round(
+                                    progress.progress || 0
+                                );
+
+                            progressElement
+                                .textContent =
+                                "Loading AI model: " +
+                                percent +
+                                "%";
+                        }
+
+                    }
+
+            }
+        );
+
+
+    progressElement.textContent =
+        "AI ready.";
+
+    return whisper;
+}
+
+
+/*
+Decode browser-supported audio into
+16kHz mono Float32Array for Whisper.
+*/
+
+async function decodeAudio(file) {
+
+    const arrayBuffer =
+        await file.arrayBuffer();
+
+    const AudioCtx =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+    const context =
+        new AudioCtx({
+            sampleRate: 16000
+        });
+
+    const decoded =
+        await context.decodeAudioData(
+            arrayBuffer.slice(0)
+        );
+
+
+    const offline =
+        new OfflineAudioContext(
+
+            1,
+
+            Math.ceil(
+                decoded.duration *
+                16000
+            ),
+
+            16000
+
+        );
+
+
+    const source =
+        offline.createBufferSource();
+
+    source.buffer =
+        decoded;
+
+    source.connect(
+        offline.destination
+    );
+
+    source.start(0);
+
+
+    const rendered =
+        await offline.startRendering();
+
+
+    return new Float32Array(
+        rendered.getChannelData(0)
+    );
+}
+
+
+/*
+Used by both MUSIC and AUDIO modes.
+*/
+
+window.processUploadedAudio =
+async function(type) {
+
+    const isMusic =
+        type === "music";
+
+    const fileInput =
+        document.getElementById(
+            isMusic
+                ? "musicFile"
+                : "audioFile"
+        );
+
+    const file =
+        fileInput.files[0];
+
+    if (!file) {
+
+        alert(
+            isMusic
+                ? "Upload a song first."
+                : "Upload an audio file first."
+        );
+
+        return;
+    }
+
+
+    const progress =
+        document.getElementById(
+            isMusic
+                ? "musicProgress"
+                : "audioProgress"
+        );
+
+
+    const original =
+        document.getElementById(
+            isMusic
+                ? "musicOriginal"
+                : "audioOriginal"
+        );
+
+
+    const translation =
+        document.getElementById(
+            isMusic
+                ? "musicTranslation"
+                : "audioTranslation"
+        );
+
+
+    const button =
+        document.getElementById(
+            isMusic
+                ? "musicButton"
+                : "audioButton"
+        );
+
+
+    progress.classList.add("show");
+
+    button.disabled = true;
+
+    original.value =
+        "Preparing audio...";
+
+    translation.value =
+        "Waiting for AI...";
+
+
+    try {
+
+        const model =
+            await loadWhisper(
+                progress
+            );
+
+
+        progress.textContent =
+            "Reading audio...";
+
+
+        const audio =
+            await decodeAudio(file);
+
+
+        progress.textContent =
+            isMusic
+                ? "Listening to the song..."
+                : "Listening to the audio...";
+
+
+        /*
+        First get the original transcription.
+        */
+
+        const transcription =
+            await model(
+                audio,
+                {
+                    task:
+                        "transcribe",
+
+                    chunk_length_s:
+                        30,
+
+                    stride_length_s:
+                        5
+                }
+            );
+
+
+        original.value =
+            transcription.text ||
+            "No words detected.";
+
+
+        /*
+        Run Whisper again using its
+        speech-to-English translation task.
+        */
+
+        progress.textContent =
+            "Translating to English...";
+
+
+        const english =
+            await model(
+                audio,
+                {
+                    task:
+                        "translate",
+
+                    chunk_length_s:
+                        30,
+
+                    stride_length_s:
+                        5
+                }
+            );
+
+
+        translation.value =
+            english.text ||
+            "No translation detected.";
+
+
+        progress.textContent =
+            "✓ Translation complete";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        progress.textContent =
+            "Something went wrong.";
+
+
+        translation.value =
+            "Unable to process this audio.\n\n" +
+            error.message;
+
+    } finally {
+
+        button.disabled =
+            false;
+
+    }
+
+};
+
+</script>
+
+</body>
 </html>
-```
